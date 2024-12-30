@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --font-urbanist: 'Urbanist', sans-serif;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    @apply bg-background text-foreground;
+    font-family: var(--font-urbanist);
+  }
+}
+
+/* Blob Animation Styles */
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.5;
+  transform-origin: center;
+  animation: blob-float 20s ease-in-out infinite;
+  transition: background-color 5s ease-in-out;
+}
+
+.blob-purple {
+  width: 400px;
+  height: 400px;
+  background: #4f46e5; /* Indigo */
+  top: -100px;
+  right: -100px;
+  animation: blob-float 20s ease-in-out infinite,
+             blob-color-1 15s infinite alternate;
+}
+
+.blob-blue {
+  width: 350px;
+  height: 350px;
+  background: #06b6d4; /* Cyan */
+  bottom: -50px;
+  left: -100px;
+  animation: blob-float 20s ease-in-out infinite,
+             blob-color-2 15s infinite alternate;
+  animation-delay: -5s;
+}
+
+.blob-pink {
+  width: 300px;
+  height: 300px;
+  background: #0ea5e9; /* Sky blue */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: blob-float 20s ease-in-out infinite,
+             blob-color-3 15s infinite alternate;
+  animation-delay: -10s;
+}
+
+/* Concentric Circles */
+.circles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  animation: circle-pulse 4s ease-out infinite;
+}
+
+.circle:nth-child(1) {
+  width: 200px;
+  height: 200px;
+  animation-delay: -0.5s;
+}
+
+.circle:nth-child(2) {
+  width: 400px;
+  height: 400px;
+  animation-delay: -1s;
+}
+
+.circle:nth-child(3) {
+  width: 600px;
+  height: 600px;
+  animation-delay: -1.5s;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(-50px, 50px) scale(1.05);
+  }
+}
+
+@keyframes blob-color-1 {
+  0% { background: #4f46e5; }
+  50% { background: #0ea5e9; }
+  100% { background: #06b6d4; }
+}
+
+@keyframes blob-color-2 {
+  0% { background: #06b6d4; }
+  50% { background: #0891b2; }
+  100% { background: #0369a1; }
+}
+
+@keyframes blob-color-3 {
+  0% { background: #0ea5e9; }
+  50% { background: #3b82f6; }
+  100% { background: #4f46e5; }
+}
+
+@keyframes circle-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+}
